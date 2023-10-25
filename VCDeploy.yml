@@ -1,5 +1,6 @@
 - name: Crear VM con ISO en vCenter
   hosts: all
+  collections: vmware.vcenter_extension
   gather_facts: False
   tasks:
      - name: Crear VM en Vcenter host
