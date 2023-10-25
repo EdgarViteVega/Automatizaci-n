@@ -1,5 +1,16 @@
 - name: Ping hacia host windows
   hosts: all
+   collections:
+    - chocolatey.chocolatey
   tasks:
     - name: Hello Message
       win_ping:
+    - name: Instalar paqueteria en el modulo de virtual
+      win_chocolatey:
+        name:
+        - vscode
+        - git
+        - chromium
+        - dropbox
+        - docker-desktop
+        state: latest
