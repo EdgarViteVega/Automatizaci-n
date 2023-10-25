@@ -1,6 +1,5 @@
-- name: Hello World Sample
+- name: Ping hacia host windows
   hosts: all
   tasks:
     - name: Hello Message
-      debug:
-        msg: "Hello World!"
+      ansible.windows.win_ping:
