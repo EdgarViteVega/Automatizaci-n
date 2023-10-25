@@ -1,7 +1,5 @@
 - name: Crear VM con ISO en vCenter
   hosts: localhost
-  vars:
-      vars
   gather_facts: False
   tasks:
      - name: Crear VM en Vcenter host
