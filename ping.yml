@@ -2,4 +2,4 @@
   hosts: all
   tasks:
     - name: Hello Message
-      ansible.windows.win_ping:
+      win_ping:
