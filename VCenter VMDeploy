@@ -1,4 +1,3 @@
----
 - name: Crear VM con ISO en vCenter
   hosts: localhost
   vars:
@@ -32,25 +31,3 @@
              num_cpus: 4
           wait_for_ip_address: no
        delegate_to: localhost
-
-  #  tasks:
-  #  - name: Crear VM sin ISO
-  #    vmware_guest:
-  #      datacenter: "{{ vcenter_datacentername}}"
-  #      hostname: "{{ vcenter_hostname }}"
-  #      username: "{{ vcenter_username }}"
-  #      password: "{{ vcenter_password }}"
-  #      folder:
-  #      validate_certs: no
-  #      name: rhelx_ansi1
-  #      state: poweredon
-  #      cdrom:
-  #         type: iso
-  #         iso-path: "[datastorage (1)] rhel-8.5-x86_64.iso"
-  #      hardware:
-  #        memory_mb: 2048
-  #        num_cpus: 2
-  #      networks:
-  #            - name: "VM Networks"
-  #      guest_id: rhel8_64Guest
-  #      delegate_to: localhost
