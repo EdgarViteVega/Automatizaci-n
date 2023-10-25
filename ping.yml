@@ -1,6 +1,6 @@
 - name: Ping hacia host windows
   hosts: all
-   collections:
+  collections:
     - chocolatey.chocolatey
   tasks:
     - name: Hello Message
