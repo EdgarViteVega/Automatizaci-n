@@ -17,7 +17,7 @@
           disk:
              - size_gb: 15
                type: thin
-               datastore: pumba
+               datastore: "{{ vcenter_datastore }}"
           cdrom:
              - type: iso
                iso_path: "[datastore1 (1)] rhel-8.5-x86_64-boot.iso"
