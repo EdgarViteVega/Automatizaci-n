@@ -1,5 +1,5 @@
 - name: Crear VM con ISO en vCenter Usando repo git
-  hosts: 192.168.1.137
+  hosts: all
   collections: 
          - vmware.vcenter_extension
   gather_facts: False
