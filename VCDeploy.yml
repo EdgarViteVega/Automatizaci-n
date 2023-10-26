@@ -32,3 +32,31 @@
           wait_for_ip_address: no
        delegate_to: localhost
        loop: "{{ range(1, 11) | list }}"
+     - name: Creación de máquinas virtuales con Windows 10
+       vmware_guest:
+          datacenter: "{{ vcenter_datacentername}}"
+          hostname: "{{ vcenter_hostname }}"
+          username: "{{ vcenter_username }}"
+          password: "{{ vcenter_password }}"
+          validate_certs: no
+          folder: /
+          name: "RHEL_vm_{{ item }}"
+          state: poweredoff
+          guest_id: windows9_64Guest
+          esxi_hostname: "{{ esxi_hostname }}"
+          disk:
+             - size_gb: 15
+               type: thin
+               datastore: "{{ vcenter_datastore }}"
+          cdrom:
+             - type: iso
+               iso_path: "[datastore1 (1)] Windows.iso"
+               controller_number: 1 
+               unit_number: 0
+               state: present
+          hardware:
+             memory_mb: 8192
+             num_cpus: 4
+          wait_for_ip_address: no
+       delegate_to: localhost
+       loop: "{{ range(1, 11) | list }}"       
