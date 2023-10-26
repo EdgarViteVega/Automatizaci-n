@@ -1,5 +1,5 @@
 - name: Crear VM con ISO en vCenter
-  hosts: localhost
+  hosts: VMWare
   collections: 
          - vmware.vcenter_extension
   gather_facts: False
