@@ -1,5 +1,5 @@
-- name: Crear VM con ISO en vCenter
-  hosts: VMWare
+- name: Crear VM con ISO en vCenter Usando repo git
+  hosts: VCenter
   collections: 
          - vmware.vcenter_extension
   gather_facts: False
