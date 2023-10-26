@@ -1,0 +1,7 @@
+- name: Ping hacia host windows
+  hosts: all
+  collections:
+    - chocolatey.chocolatey
+  tasks:
+    - name: Hello Message
+      win_ping:
