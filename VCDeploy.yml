@@ -13,7 +13,7 @@
           validate_certs: no
           folder: /
           name: test_vm_prueba
-          state: powered-off
+          state: poweredoff
           guest_id: rhel8_64Guest
           esxi_hostname: "{{ esxi_hostname }}"
           disk:
@@ -23,7 +23,7 @@
           cdrom:
              - type: iso
                iso_path: "[datastore1 (1)] rhel-8.5-x86_64-boot.iso"
-               controller_number: 1  # Número de controlador
+               controller_number: 1 
                unit_number: 0
                state: present
           hardware:
