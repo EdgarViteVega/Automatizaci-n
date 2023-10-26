@@ -40,7 +40,7 @@
           password: "{{ vcenter_password }}"
           validate_certs: no
           folder: /
-          name: "RHEL_vm_{{ item }}"
+          name: "Windows_vm_{{ item }}"
           state: poweredoff
           guest_id: windows9_64Guest
           esxi_hostname: "{{ esxi_hostname }}"
