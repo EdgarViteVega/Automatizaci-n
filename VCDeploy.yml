@@ -4,7 +4,7 @@
          - community.vmware.vcenter_extension
   gather_facts: False
   tasks:
-     - name: Crear VM en Vcenter host
+     - name: Creación de máquinas virtuales con Red Hat Entterprice Limux 8
        vmware_guest:
           datacenter: "{{ vcenter_datacentername}}"
           hostname: "{{ vcenter_hostname }}"
@@ -12,7 +12,7 @@
           password: "{{ vcenter_password }}"
           validate_certs: no
           folder: /
-          name: "test_vm_prueba_{{ item }}"
+          name: "RHEL_vm_{{ item }}"
           state: poweredoff
           guest_id: rhel8_64Guest
           esxi_hostname: "{{ esxi_hostname }}"
