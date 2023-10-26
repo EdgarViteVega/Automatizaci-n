@@ -1,5 +1,7 @@
 - name: Ping hacia host windows
   hosts: all
+  collections:
+    - chocolatey.chocolatey
   tasks:
-    - name: Send ping
-      ansible.windows.win_ping:
+    - name: Hello Message
+      win_ping:
