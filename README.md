@@ -1,5 +1,5 @@
 # Automatizaci-n
-Repo para control de veriónes
+Repo para control de versiónes
 Coloco las notas que he tomado a lo largo de mi investigación de Ansible
 Nodos de control | Para antes de usar Ansible
 
