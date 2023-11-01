@@ -10,7 +10,7 @@
         name:
         - vscode
         - git
-        - chromium
-        - dropbox
-        - docker-desktop
+       # - chromium
+       # - dropbox
+       # - docker-desktop
         state: latest
