@@ -9,7 +9,7 @@
       win_chocolatey:
         name:
         - vscode
-        - git
+       # - git
        # - chromium
        # - dropbox
        # - docker-desktop
