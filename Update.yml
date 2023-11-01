@@ -27,8 +27,3 @@
     - name: Toma de inventarios de componentes para entregables a inventario
       win_command: systeminfo
       register: system_info
-    - name: Escribir la información del sistema a un archivo
-      copy:
-        content: "{{ system_info.stdout }}"
-        dest: "./inventory/{{ inventory_hostname }}_systeminfo.txt"
-      delegate_to: localhost
