@@ -1,0 +1,34 @@
+- name: conectividad a host en 
+  hosts: all
+  collections:
+    - chocolatey.chocolatey
+  tasks:
+    - name: Hello Message
+      win_ping:
+    - name: Instalar paqueteria en el modulo de virtual
+      win_chocolatey:
+        name:
+        - vscode
+        - git
+       # - chromium
+       # - dropbox
+       # - docker-desktop
+        state: latest
+    - name: Actualización de Sanidad para controladores y parches de seguridad 
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - CriticalUpdates
+        state: installed
+      register: update_result
+    - name: Reiniciar si es necesario
+      win_reboot:
+      when: update_result.reboot_required
+    - name: Toma de inventarios de componentes para entregables a inventario
+      win_command: systeminfo
+      register: system_info
+    - name: Escribir la información del sistema a un archivo
+      copy:
+        content: "{{ system_info.stdout }}"
+        dest: "./inventory/{{ inventory_hostname }}_systeminfo.txt"
+      delegate_to: localhost
