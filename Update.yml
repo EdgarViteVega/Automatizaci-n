@@ -24,6 +24,6 @@
     - name: Reiniciar si es necesario
       win_reboot:
       when: update_result.reboot_required
-    - name: Toma de inventarios de componentes para entregables a inventario
-      win_command: systeminfo
-      register: system_info
+   # - name: Toma de inventarios de componentes para entregables a inventario
+   #  win_command: systeminfo
+   #  register: system_info
