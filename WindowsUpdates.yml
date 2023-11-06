@@ -30,7 +30,6 @@
         register: update_result
     - name: Reinicio de sanidad
       win_reboot:
-        - name: Muestra un mensaje de configuración
     - name: Ventana de aviso  
       win_msg:
         msg: "Su sistema ha sido configurado y actualizado por Edgar"
