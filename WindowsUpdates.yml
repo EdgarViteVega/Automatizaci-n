@@ -12,10 +12,10 @@
       win_chocolatey:
         name:
         - vscode
-        - git
-        - chromium
-        - dropbox
-        - docker-desktop
+        #- git
+        #- chromium
+        #- dropbox
+        #- docker-desktop
         state: latest
     - name: Desactivar Windows Defender Antivirus temporalmente
       win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
