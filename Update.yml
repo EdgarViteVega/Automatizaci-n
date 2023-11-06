@@ -27,9 +27,9 @@
    # - name: Toma de inventarios de componentes para entregables a inventario
    #  win_command: systeminfo
    #  register: system_info
-     - name: Mostrar ventana emergente de actualización
-       win_shell: |
+    - name: Mostrar ventana emergente de actualización
+      win_shell: |
         Add-Type -AssemblyName PresentationFramework
         [System.Windows.MessageBox]::Show('El sistema ha sido actualizado y configurado por el administrador, puede continuar trabajando', 'Actualización Completa')
-       when: update_result.changed or update_result.reboot_required
-       ignore_errors: yes
+      when: update_result.changed
+      ignore_errors: yes
