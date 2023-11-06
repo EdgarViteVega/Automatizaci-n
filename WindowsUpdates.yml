@@ -4,11 +4,11 @@
     - chocolatey.chocolatey
     - ansible.windows
   tasks:
-    - name: Hello Message
+    - name: Prueba de conectividad
       win_ping:
-    - name: Hello Message
+    - name: OK
       win_ping:
-    - name: Instalar paqueteria en el modulo de virtual
+    - name: Instalar paqueteria en los equipos
       win_chocolatey:
         name:
         - vscode
@@ -19,10 +19,6 @@
         state: latest
     - name: Desactivar Windows Defender Antivirus temporalmente
       win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
-     # become: yes
-     # become_method: runas
-     # ignore_errors: yes
-      
     - name: Actualizar todos los paquetes de Windows
       win_updates:
         category_names: 
