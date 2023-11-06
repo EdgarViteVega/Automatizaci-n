@@ -14,19 +14,34 @@
        # - dropbox
        # - docker-desktop
         state: latest
-    - name: Actualización de Sanidad para controladores y parches de seguridad 
-      win_updates:
-        category_names:
-          - SecurityUpdates
-          - CriticalUpdates
-        state: installed
-      register: update_result
+    - name: Iniciar la búsqueda e instalación de actualizaciones de Windows
+      ansible.windows.win_shell: |
+        $UpdateSession = New-Object -ComObject Microsoft.Update.Session
+        $UpdateSearcher = $UpdateSession.CreateUpdateSearcher()
+        $SearchResult = $UpdateSearcher.Search("IsInstalled=0 and Type='Software'")
+        $UpdatesToDownload = New-Object -ComObject Microsoft.Update.UpdateColl
+        foreach ($Update in $SearchResult.Updates) {
+          $UpdatesToDownload.Add($Update) | Out-Null
+        }
+        $Downloader = $UpdateSession.CreateUpdateDownloader()
+        $Downloader.Updates = $UpdatesToDownload
+        $Downloader.Download()
+        $UpdatesToInstall = New-Object -ComObject Microsoft.Update.UpdateColl
+        foreach ($Update in $SearchResult.Updates) {
+          if ($Update.IsDownloaded) {
+            $UpdatesToInstall.Add($Update) | Out-Null
+          }
+        }
+        $Installer = $UpdateSession.CreateUpdateInstaller()
+        $Installer.Updates = $UpdatesToInstall
+        $InstallationResult = $Installer.Install()
+        # Salida de resultado de la instalación
+        $InstallationResult.ResultCode
+      register: update_script_result
+
     - name: Reiniciar si es necesario
       win_reboot:
       when: update_result.reboot_required
-   # - name: Toma de inventarios de componentes para entregables a inventario
-   #  win_command: systeminfo
-   #  register: system_info
     - name: Mostrar ventana emergente de actualización
       win_shell: |
         Add-Type -AssemblyName PresentationFramework
