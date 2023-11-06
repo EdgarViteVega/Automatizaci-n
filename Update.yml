@@ -14,12 +14,3 @@
        # - dropbox
        # - docker-desktop
         state: latest
-    - name: Reiniciar si es necesario
-      win_reboot:
-      when: update_result.reboot_required
-    - name: Mostrar ventana emergente de actualización
-      win_shell: |
-        Add-Type -AssemblyName PresentationFramework
-        [System.Windows.MessageBox]::Show('El sistema ha sido actualizado y configurado por el administrador, puede continuar trabajando', 'Actualización Completa')
-      when: update_result.changed
-      ignore_errors: yes
