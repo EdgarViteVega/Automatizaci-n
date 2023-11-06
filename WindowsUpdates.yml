@@ -9,9 +9,9 @@
 
     - name: Desactivar Windows Defender Antivirus temporalmente
       win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
-      become: yes
-      become_method: runas
-      ignore_errors: yes
+     # become: yes
+     # become_method: runas
+     # ignore_errors: yes
       
     - name: Actualizar todos los paquetes de Windows
       win_updates:
