@@ -2,6 +2,7 @@
   hosts: all
   collections:
     - chocolatey.chocolatey
+    - ansible.windows
   tasks:
     - name: Hello Message
       win_ping:
