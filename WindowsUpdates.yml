@@ -1,33 +1,33 @@
-- name: Implementaciónes en Windows 
+- name: Implementaciones en Windows 
   hosts: all
   collections:
     - chocolatey.chocolatey
-    - ansible.windows
   tasks:
-    - name: Instalar módulo PSWindowsUpdate
-      ansible.windows.win_shell: |
-        Install-PackageProvider -Name NuGet -Force
-        Install-Module -Name PSWindowsUpdate -Force
+    - name: Hello Message
+      win_ping:
+
+    - name: Desactivar Windows Defender Antivirus temporalmente
+      win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
+      become: yes
+      become_method: runas
       ignore_errors: yes
+      
+    - name: Actualizar todos los paquetes de Windows
+      win_updates:
+        category_names: 
+          - CriticalUpdates
+          - SecurityUpdates
+          - UpdateRollups
+        state: installed
+        register: update_result
 
-    - name: Importar módulo PSWindowsUpdate
-      ansible.windows.win_shell: Import-Module PSWindowsUpdate
-      ignore_errors: yes
-
-    - name: Buscar e instalar actualizaciones de Windows
-      ansible.windows.win_shell: |
-        Get-WindowsUpdate -MicrosoftUpdate -AcceptAll -Install
-        Write-Output "Windows updates have been installed."
-      register: update_result
-
-    - name: Verificar y reiniciar si es necesario
+    - name: Reboot the machine if required and wait for it to come back
       ansible.windows.win_reboot:
-        msg: "Reinicio necesario tras actualización de Windows."
-        pre_reboot_delay: 30
-        post_reboot_delay: 60
-        test_command: whoami
-      when: update_result.stdout | search("has been installed")
+        when: update_result.reboot_required
 
-    - name: Mostrar el resultado de la actualización
-      debug:
-        var: update_result.stdout_lines
+    - name: Reactivar Windows Defender Antivirus después de las actualizaciones
+      win_shell: Set-MpPreference -DisableRealtimeMonitoring $false
+      become: yes
+      become_method: runas
+      ignore_errors: yes
+      when: update_result.reboot_required
