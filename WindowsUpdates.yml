@@ -1,0 +1,33 @@
+- name: Implementaciónes en Windows 
+  hosts: all
+  collections:
+    - chocolatey.chocolatey
+    - ansible.windows
+  tasks:
+    - name: Instalar módulo PSWindowsUpdate
+      ansible.windows.win_shell: |
+        Install-PackageProvider -Name NuGet -Force
+        Install-Module -Name PSWindowsUpdate -Force
+      ignore_errors: yes
+
+    - name: Importar módulo PSWindowsUpdate
+      ansible.windows.win_shell: Import-Module PSWindowsUpdate
+      ignore_errors: yes
+
+    - name: Buscar e instalar actualizaciones de Windows
+      ansible.windows.win_shell: |
+        Get-WindowsUpdate -MicrosoftUpdate -AcceptAll -Install
+        Write-Output "Windows updates have been installed."
+      register: update_result
+
+    - name: Verificar y reiniciar si es necesario
+      ansible.windows.win_reboot:
+        msg: "Reinicio necesario tras actualización de Windows."
+        pre_reboot_delay: 30
+        post_reboot_delay: 60
+        test_command: whoami
+      when: update_result.stdout | search("has been installed")
+
+    - name: Mostrar el resultado de la actualización
+      debug:
+        var: update_result.stdout_lines
