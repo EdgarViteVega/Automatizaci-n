@@ -21,7 +21,3 @@
           - UpdateRollups
         state: installed
         register: update_result
-
-    - name: Reboot the machine if required and wait for it to come back
-      ansible.windows.win_reboot:
-        when: update_result.reboot_required
