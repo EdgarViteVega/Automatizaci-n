@@ -6,7 +6,17 @@
   tasks:
     - name: Hello Message
       win_ping:
-
+    - name: Hello Message
+      win_ping:
+    - name: Instalar paqueteria en el modulo de virtual
+      win_chocolatey:
+        name:
+        - vscode
+        - git
+        - chromium
+        - dropbox
+        - docker-desktop
+        state: latest
     - name: Desactivar Windows Defender Antivirus temporalmente
       win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
      # become: yes
