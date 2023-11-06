@@ -1,4 +1,4 @@
-- name: conectividad a host en 
+- name: Implementaciónes en Windows 
   hosts: all
   collections:
     - chocolatey.chocolatey
