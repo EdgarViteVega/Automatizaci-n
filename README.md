@@ -1,5 +1,4 @@
-# Automatizaci-n
-Repo para control de versiónes
+# Automatización
 Coloco las notas que he tomado a lo largo de mi investigación de Ansible
 Nodos de control | Para antes de usar Ansible
 
@@ -14,7 +13,7 @@ Para Versiones más actuales podemos usar el microservicio
 Primero instalamos ansible -navigator --version 
 sudo dnf install ansible-navigator
 
-y usamos su cotenedor que tiene ambientes con todos loo registros y palybook para ejecutar en ambientes virtuales 
+y usamos su plataforma que tiene ambientes con todos los registros y palybook para ejecutar en ambientes virtuales 
 
 tiene que ser la versión 2.1.0 y usamos el comando podman para logearnos sobre el ambiente $podman login utility.lab.example.com 
 
@@ -29,7 +28,7 @@ SSH troobleshoting
 1: https://access.redhat.com/solutions/3356121
 2: https://access.redhat.com/articles/3967261#troubleshooting-common-issues-19
 
-Entendiendo la implementación modulos
+Entendiendo la implementación modular
 https://access.redhat.com/articles/3967261#modules-7
 
 Playbooks de para troobleshoting
@@ -144,15 +143,15 @@ $ ansible-navigator config
 
 Algunas de las configuraciónes básicas son:
 
-inventory  	| 	Specifies the path to the inventory file
+inventory  	    | 	Specifies the path to the inventory file
                 | 
-remote		|	EL nombre de los usuarios logeados en los host 
-                |       administrados, si este no esta especificado se usa 
-                |       el ususraio normal
+remote		    |	EL nombre de los usuarios logeados en los host 
+                |   administrados, si este no esta especificado se usa 
+                |   el ususraio normal
                 | 
-ask-pass	| 	Si solicitar o no una contraseña SSH. 
-                |       Puede ser false si se utiliza la autenticación de 
-                |       clave pública SSH.
+ask-pass	    | 	Si solicitar o no una contraseña SSH. 
+                |   puede ser false si se utiliza la autenticación de 
+                |   clave pública SSH.
                 |
 become          |       Si cambiar automáticamente de usuario en el host
                 |       administrado (normalmente a raíz) después de
@@ -236,11 +235,11 @@ primero creamos nuestro configurable
 luego cramos nuestro inventario con la segmentación de red y los host destinos para tenerlos agrupados para poder tirar comandos a hacia los destinos:
 386  ansible all -m ping
 
-  387  vi inventory
-  388  ansible all -m ping
-  389  ansible localhost --list-host
-  390  ansible TSR -m ping
-  391  ansible TSS -m ping
+  $  vi inventory
+  $  ansible all -m ping
+  $  ansible localhost --list-host
+  $  ansible TSR -m ping
+  $  ansible TSS -m ping
 
 
 para hacer un playbook completo de esto ultimo tenemos que crear igualmente un archivo tipo inventory.ini cona el mismo contenido y un YAML con el siguiente contenido al igual que el directorio tal como:
