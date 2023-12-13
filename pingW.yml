@@ -3,10 +3,5 @@
   collections:
     - chocolatey.chocolatey
   tasks:
-    - name: Hello Message
+    - name: Conectividad estable 
       win_ping:
-    - name: Muestra un mensaje de configuración
-      win_msg:
-        msg: "Su sistema ha sido configurado por el administrador"
-        display_seconds: 30 # Esto es el tiempo que el mensaje será mostrado
-        wait_for_response: no
