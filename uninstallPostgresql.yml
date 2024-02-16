@@ -1,21 +1,25 @@
 ---
-- name: Detener el servicio de PostgreSQL
-  systemd:
+- name: Instalar y configurar PostgreSQL en RHEL 9
+  hosts: all
+  become: yes  # Usa 'become' para obtener privilegios de root
+  tasks:
+    - name: Detener el servicio de PostgreSQL
+      systemd:
         name: postgresql
         state: stopped
 
-- name: Deshabilitar el servicio de PostgreSQL
-  systemd:
+    - name: Deshabilitar el servicio de PostgreSQL
+      systemd:
         name: postgresql
         enabled: no
 
-- name: Desinstalar PostgreSQL Server
-  dnf:
+    - name: Desinstalar PostgreSQL Server
+      dnf:
         name: postgresql-server
         state: absent
 
     # Opcional: Eliminar los datos de PostgreSQL
-- name: Eliminar los datos de PostgreSQL
-  file:
+    - name: Eliminar los datos de PostgreSQL
+      file:
         path: "/var/lib/pgsql"
         state: absent
