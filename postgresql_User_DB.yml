@@ -1,0 +1,21 @@
+---
+- name: Creación de Usuario y Base de Datos
+  hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  become: yes  # Usa 'become' para obtener privilegios de root
+  tasks:
+   - name: Crear un usuario de base de datos con psql
+     ansible.builtin.shell: |
+        psql -c "CREATE USER mi_usuario WITH PASSWORD 'mi_contraseña';"
+     become_user: postgres
+     ignore_errors: yes
+
+   - name: Crear una base de datos con psql
+     ansible.builtin.shell: |
+        psql -c "CREATE DATABASE mi_base_de_datos OWNER mi_usuario;"
+     become_user: postgres
+     ignore_errors: yes
+# Nombre del nuevo usuario mi_usuario
+# Nombre de la nueva base de datos mi_base_de_datos
+# Variable que guarde la contraseña mi_contaseña
