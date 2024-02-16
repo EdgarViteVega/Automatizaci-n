@@ -10,7 +10,7 @@
         enabled: no
 
     - name: Desinstalar PostgreSQL Server
-      ansible.builtin.yum:
+      yum:
         name: postgresql-server
         state: absent
 
