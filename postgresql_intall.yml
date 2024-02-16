@@ -1,0 +1,28 @@
+- name: Instalar y configurar PostgreSQL en RHEL 9
+  hosts: all
+  become: yes  # Usa 'become' para obtener privilegios de root
+  tasks:
+    - name: Instalar PostgreSQL Server
+      dnf:
+        name: postgresql-server
+        state: present
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '9'
+
+    - name: Inicializar la base de datos de PostgreSQL
+      command: /usr/bin/postgresql-setup --initdb
+      become_user: postgres
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '9'
+      notify: arrancar postgresql
+
+    - name: Habilitar y arrancar el servicio de PostgreSQL
+      systemd:
+        name: postgresql
+        enabled: yes
+        state: started
+
+  handlers:
+    - name: arrancar postgresql
+      systemd:
+        name: postgresql
+        state: started
+        enabled: yes
