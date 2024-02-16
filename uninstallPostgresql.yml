@@ -1,0 +1,21 @@
+---
+    - name: Detener el servicio de PostgreSQL
+      ansible.builtin.systemd:
+        name: postgresql
+        state: stopped
+
+    - name: Deshabilitar el servicio de PostgreSQL
+      ansible.builtin.systemd:
+        name: postgresql
+        enabled: no
+
+    - name: Desinstalar PostgreSQL Server
+      ansible.builtin.yum:
+        name: postgresql-server
+        state: absent
+
+    # Opcional: Eliminar los datos de PostgreSQL
+    - name: Eliminar los datos de PostgreSQL
+      ansible.builtin.file:
+        path: "/var/lib/pgsql"
+        state: absent
