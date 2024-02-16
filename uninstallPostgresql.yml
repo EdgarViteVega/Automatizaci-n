@@ -1,21 +1,21 @@
 ---
-    - name: Detener el servicio de PostgreSQL
-      systemd:
+- name: Detener el servicio de PostgreSQL
+  systemd:
         name: postgresql
         state: stopped
 
-    - name: Deshabilitar el servicio de PostgreSQL
-      systemd:
+- name: Deshabilitar el servicio de PostgreSQL
+  systemd:
         name: postgresql
         enabled: no
 
-    - name: Desinstalar PostgreSQL Server
-      dnf:
+- name: Desinstalar PostgreSQL Server
+  dnf:
         name: postgresql-server
         state: absent
 
     # Opcional: Eliminar los datos de PostgreSQL
-    - name: Eliminar los datos de PostgreSQL
-      file:
+- name: Eliminar los datos de PostgreSQL
+  file:
         path: "/var/lib/pgsql"
         state: absent
