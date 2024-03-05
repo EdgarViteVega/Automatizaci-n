@@ -30,6 +30,7 @@
           - UpdateRollups
         state: installed
         register: update_result
+      ignore_errors: yes
     - name: Reinicio de sanidad
       win_reboot:
     - name: Ventana de aviso  
