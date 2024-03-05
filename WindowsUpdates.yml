@@ -25,7 +25,7 @@
     - name: Actualizar todos los paquetes de Windows
       win_updates:
         category_names: 
-          #- CriticalUpdates
+          - CriticalUpdates
           - SecurityUpdates
           - UpdateRollups
         state: installed
