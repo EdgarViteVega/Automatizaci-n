@@ -4,10 +4,10 @@
     - chocolatey.chocolatey
     #- ansible.windows
   tasks:
-    - name: Prueba de conectividad
-      win_ping:
-    - name: OK
-      win_ping:
+   # - name: Prueba de conectividad
+    #  win_ping:
+    #- name: OK
+     # win_ping:
     - name: Instalar paqueteria en los equipos
       win_chocolatey:
         name:
@@ -17,24 +17,24 @@
         - dropbox
         - docker-desktop
         state: latest
-    - name: Desactivar Windows Defender Antivirus temporalmente
-      win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
-      ignore_errors: yes
-    - name: Reinicio de sanidad
-      win_reboot:
-    - name: Actualizar todos los paquetes de Windows
-      win_updates:
-        category_names: 
-          - CriticalUpdates
-          - SecurityUpdates
-          - UpdateRollups
-        state: installed
-        register: update_result
-      ignore_errors: yes
-    - name: Reinicio de sanidad
-      win_reboot:
-    - name: Ventana de aviso  
-      win_msg:
-        msg: "Su sistema ha sido configurado y actualizado por Edgar"
-        display_seconds: 30 # Esto es el tiempo que el mensaje será mostrado
-        wait_for_response: no
+    #- name: Desactivar Windows Defender Antivirus temporalmente
+     # win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
+      #ignore_errors: yes
+    #- name: Reinicio de sanidad
+     # win_reboot:
+    #- name: Actualizar todos los paquetes de Windows
+     # win_updates:
+      #  category_names: 
+       #   - CriticalUpdates
+        #  - SecurityUpdates
+         # - UpdateRollups
+        #state: installed
+        #register: update_result
+      #ignore_errors: yes
+    #- name: Reinicio de sanidad
+     # win_reboot:
+    #- name: Ventana de aviso  
+     # win_msg:
+      #  msg: "Su sistema ha sido configurado y actualizado por Edgar"
+       # display_seconds: 30 # Esto es el tiempo que el mensaje será mostrado
+        #wait_for_response: no
