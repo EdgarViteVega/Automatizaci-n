@@ -1,8 +1,8 @@
 - name: Implementaciones en Windows 
   hosts: all
   collections:
-    - chocolatey.chocolatey
-    #- ansible.windows
+    #- chocolatey.chocolatey
+    - ansible.windows
   tasks:
    # - name: Prueba de conectividad
     #  win_ping:
