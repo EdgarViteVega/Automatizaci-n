@@ -2,7 +2,7 @@
   hosts: all
   collections:
     - chocolatey.chocolatey
-    - ansible.windows
+    #- ansible.windows
   tasks:
    # - name: Prueba de conectividad
     #  win_ping:
