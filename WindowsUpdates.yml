@@ -4,10 +4,8 @@
     - chocolatey.chocolatey
     #- ansible.windows
   tasks:
-   # - name: Prueba de conectividad
-    #  win_ping:
-    #- name: OK
-     # win_ping:
+    - name: Prueba de conectividad
+      win_ping:
     - name: Instalar paqueteria en los equipos
       win_chocolatey:
        name:
