@@ -6,15 +6,10 @@
   tasks:
     - name: Prueba de conectividad
       win_ping:
-    - name: Instalar paqueteria en los equipos
+    - name: Ensure 7-Zip is installed through Chocolatey
       win_chocolatey:
-       name:
-          - vscode
-          #- git
-          - chromium
-          #- dropbox
-          - docker-desktop
-       state: latest
+       name: 7zip
+       state: present
     #- name: Desactivar Windows Defender Antivirus temporalmente
      # win_shell: Set-MpPreference -DisableRealtimeMonitoring $true
       #ignore_errors: yes
