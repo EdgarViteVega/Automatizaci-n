@@ -12,9 +12,9 @@
       win_chocolatey:
        name:
           - vscode
-          - git
+          #- git
           - chromium
-          - dropbox
+          #- dropbox
           - docker-desktop
        state: latest
     #- name: Desactivar Windows Defender Antivirus temporalmente
